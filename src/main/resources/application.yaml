@@ -1,0 +1,40 @@
+
+#mybatis
+mybatis-plus:
+  mapper-locations: classpath*:/mapper/**Mapper.xml
+  type-aliases-package: com.cuijing.sundial_dream.mapper
+  global-config:
+    db-config:
+      # ���ݿ�����
+      db-type: mysql
+      # ��������  AUTO:"���ݿ�ID����", INPUT:"�û�����ID",ID_WORKER:"ȫ��ΨһID (��������ΨһID)", UUID:"ȫ��ΨһID UUID";
+      id-type: auto
+      # �ֶβ��� IGNORED:"�����ж�",NOT_NULL:"�� NULL �ж�"),NOT_EMPTY:"�ǿ��ж�"
+      field-strategy: not_empty
+      logic-delete-value: 1
+      logic-not-delete-value: 0
+      sql-parser-cache: true
+    configuration:
+      cache-enabled: false
+      call-setters-on-nulls: true
+      jdbc-type-for-null: null
+      map-underscore-to-camel-case: true
+      # log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+#����Դ
+spring:
+  datasource:
+    driver-class-name:  com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/sundial_dreams?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=GMT
+    username: root
+    password: 123456
+
+  thymeleaf:
+    prefix: classpath:/templates/
+
+server:
+  port: 9090
+
+
+
+

@@ -1,9 +1,13 @@
 package com.cuijing.sundial_dream.entity;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.*;
+import com.yikaiye.common.data.entity.SuperEntity;
+import lombok.Data;
+
+import javax.validation.constraints.NotEmpty;
 import java.time.LocalDateTime;
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * <p>
@@ -13,7 +17,9 @@ import java.io.Serializable;
  * @author cuijing
  * @since 2020-03-21
  */
-public class User implements Serializable {
+@TableName("user")
+@Data
+public class User extends SuperEntity {
 
     private static final long serialVersionUID=1L;
 
@@ -26,114 +32,62 @@ public class User implements Serializable {
     /**
      * 手机号
      */
+    @NotEmpty(message = "手机号不能为空")
+    @TableField(value = "phone")
     private String phone;
 
     /**
      * 姓名
      */
+    @TableField(value = "real_name")
+    @NotEmpty(message = "姓名不能为空")
     private String realName;
 
     /**
      * 密码
      */
+    @TableField(value = "password")
+    @NotEmpty(message = "密码不能为空")
     private String password;
+
+    /**
+     * 用户头像
+     */
+    @TableField(value = "user_photo")
+    private String userPhoto;
+
+    /**
+     * 性别
+     */
+    @TableField(value = "gender")
+    private String gender;
+
+    /**
+     * 生日
+     */
+    @TableField(value = "birth_date")
+    private Date birthDate;
 
     /**
      * 状态，0：禁用，1：可用
      */
+    @TableField(value = "status")
     private Integer status;
 
     /**
-     * 创建时间
+     * 邮箱
      */
-    private LocalDateTime createTime;
+    @TableField(value = "mail")
+    private String mail;
 
-    /**
-     * 修改时间
-     */
-    private LocalDateTime updateTime;
 
     /**
      * 是否删除，1：删除；0：正常
      */
+    @TableField(value = "is_del")
+    @TableLogic
     private Integer isDel;
 
 
-    public Long getId() {
-        return id;
-    }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
-
-    public String getRealName() {
-        return realName;
-    }
-
-    public void setRealName(String realName) {
-        this.realName = realName;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public Integer getStatus() {
-        return status;
-    }
-
-    public void setStatus(Integer status) {
-        this.status = status;
-    }
-
-    public LocalDateTime getCreateTime() {
-        return createTime;
-    }
-
-    public void setCreateTime(LocalDateTime createTime) {
-        this.createTime = createTime;
-    }
-
-    public LocalDateTime getUpdateTime() {
-        return updateTime;
-    }
-
-    public void setUpdateTime(LocalDateTime updateTime) {
-        this.updateTime = updateTime;
-    }
-
-    public Integer getIsDel() {
-        return isDel;
-    }
-
-    public void setIsDel(Integer isDel) {
-        this.isDel = isDel;
-    }
-
-    @Override
-    public String toString() {
-        return "User{" +
-        "id=" + id +
-        ", phone=" + phone +
-        ", realName=" + realName +
-        ", password=" + password +
-        ", status=" + status +
-        ", createTime=" + createTime +
-        ", updateTime=" + updateTime +
-        ", isDel=" + isDel +
-        "}";
-    }
 }

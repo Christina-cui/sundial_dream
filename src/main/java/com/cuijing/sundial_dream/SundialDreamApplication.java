@@ -2,15 +2,12 @@ package com.cuijing.sundial_dream;
 
 
 
-import com.yikaiye.common.CommonConfiguration;
-import com.yikaiye.common.data.config.mybatis.MybatisPlusConfig;
-import com.yikaiye.common.error.ErrorConfiguration;
-import com.yikaiye.common.security.permission.CustomAuthConfiguration;
-import com.yikaiye.common.security.token.TokenSecurityConfiguration;
+import com.cuijing.sundial_dream.common.CommonConfiguration;
+
+import com.cuijing.sundial_dream.common.MybatisPlusConfig;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.ServletComponentScan;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;

@@ -2,48 +2,69 @@
 <!--namespace命名空间，为了对sql语句进行隔离，方便管理，mapper开发dao方式，使用namespace有特殊作用  
 mapper代理开发时将namespace指定为mapper接口的全限定名  
  -->
-<mapper namespace="com.chengxusheji.mapper.LeavewordMapper"> 
-<!--在mapper.xml文件中配置很多的sql语句，执行每个sql语句时，封装为MappedStatement对象 
+<mapper namespace="com.cuijing.sundial_dream.mapper.LeavewordMapper">
+<!--在mapper.xml文件中配置很多的sql语句，执行每个sql语句时，封装为MappedStatement对象
 mapper.xml以statement为单位管理sql语句  
  -->
 	<!-- 添加留言记录 -->
-	<insert id="addLeaveword" parameterType="leaveword">
-		insert into t_leaveword(leaveTitle,leaveContent,userObj,leaveTime,replyContent,replyTime) values 
-		(#{leaveTitle},#{leaveContent},#{userObj.user_name},#{leaveTime},#{replyContent},#{replyTime})
-	</insert>
+	<resultMap id="Leaveword" type="com.cuijing.sundial_dream.entity.Leaveword">
+		<id property="leaveWordId" column="id"></id>
+		<id property="leaveTitle" column="leave_title"></id>
+		<id property="leaveContent" column="leave_content"></id>
+		<id property="userId" column="user_id"></id>
+		<id property="leaveTime" column="leave_time"></id>
+		<id property="replyContent" column="reply_content"></id>
+		<id property="replyTime" column="reply_time"></id>
+		<id property="isDel" column="is_del"></id>
+	</resultMap>
 
-	<!-- 按照查询条件分页查询留言记录 -->
-	<select id="queryLeaveword" resultMap="leavewordMap" >
-		select t_leaveword.* from t_leaveword,t_userInfo ${where} and t_leaveword.userObj = t_userInfo.user_name limit #{startIndex},#{pageSize}
+	<select id="selectLeaveWordsByPage" resultMap="Leaveword" parameterType="com.cuijing.sundial_dream.condition.LeavewordCondition">
+		select * from t_leave_word l
+		<where>
+			l.is_del = 0
+			<if test="condition.id != null">
+				and l.id = #{condition.id}
+			</if>
+			<if test="condition.title != null">
+				and l.leave_title like concat("%",#{condition.title},"%")
+			</if>
+			<if test="condition.userId != null">
+				and l.user_id = #{condition.userId}
+			</if>
+			<if test="condition.leaveGeTime != null">
+				and l.leave_time <![CDATA[ >= ]]> #{condition.leaveGeTime}
+			</if>
+			<if test="condition.leaveLeTime != null">
+				and l.leave_time <![CDATA[ <= ]]> #{condition.donationLeTime}
+			</if>
+			<if test="condition.leaveStartTime != null and condition.leaveEndTime != null">
+				and (l.leave_time <![CDATA[ >= ]]> #{condition.leaveStartTime} and l.leave_time <![CDATA[ <= ]]> #{condition.leaveEndTime})
+			</if>
+		</where>
 	</select>
-	<resultMap id="leavewordMap" type="leaveword">
-        <id property="leaveWordId" column="leaveWordId" />
-        <association property="userObj" column="userObj" select="com.chengxusheji.mapper.UserInfoMapper.getUserInfo" />
-    </resultMap>
 
-    <!-- 按照查询条件查询所有留言记录 -->
-	<select id="queryLeavewordList" resultMap="leavewordMap" >
-		select t_leaveword.* from t_leaveword,t_userInfo ${where} and t_leaveword.userObj = t_userInfo.user_name
-	</select>
-
-    <!-- 按照查询条件的留言记录数 -->
-	<select id="queryLeavewordCount" resultType="int">
-		select count(*) from t_leaveword,t_userInfo ${where} and t_leaveword.userObj = t_userInfo.user_name
-	</select>
-
-	<!-- 根据主键查询某个留言记录 -->
-	<select id="getLeaveword" parameterType="int" resultMap="leavewordMap">
-		select * from t_leaveword where t_leaveword.leaveWordId = #{leaveWordId}
-	</select>
-
-	<!-- 更新留言记录 -->
-	<update id="updateLeaveword" parameterType="leaveword">
-		update t_leaveword set leaveTitle=#{leaveTitle},leaveContent=#{leaveContent},userObj=#{userObj.user_name},leaveTime=#{leaveTime},replyContent=#{replyContent},replyTime=#{replyTime} where leaveWordId = #{leaveWordId}
-	</update>
-
-	<!-- 删除留言记录 -->
-	<delete id="deleteLeaveword" parameterType="int">
-		delete from t_leaveword where leaveWordId=#{leaveWordId}
+	<delete id="deleteManyLeavewords" parameterType="com.cuijing.sundial_dream.condition.LeavewordCondition">
+		delete from t_leave_word l set is_del = 1
+		<where>
+			<if test="condition.id != null">
+				and l.id = #{condition.id}
+			</if>
+			<if test="condition.title != null">
+				and l.leave_title like concat("%",#{condition.title},"%")
+			</if>
+			<if test="condition.userId != null">
+				and l.user_id = #{condition.userId}
+			</if>
+			<if test="condition.leaveGeTime != null">
+				and l.leave_time <![CDATA[ >= ]]> #{condition.leaveGeTime}
+			</if>
+			<if test="condition.leaveLeTime != null">
+				and l.leave_time <![CDATA[ <= ]]> #{condition.donationLeTime}
+			</if>
+			<if test="condition.leaveStartTime != null and condition.leaveEndTime != null">
+				and (l.leave_time <![CDATA[ >= ]]> #{condition.leaveStartTime} and l.leave_time <![CDATA[ <= ]]> #{condition.leaveEndTime})
+			</if>
+		</where>
 	</delete>
 
 </mapper>

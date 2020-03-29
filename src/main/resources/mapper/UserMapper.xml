@@ -8,10 +8,16 @@
         <result column="phone" property="phone" />
         <result column="real_name" property="realName" />
         <result column="password" property="password" />
+        <result column="user_photo" property="userPhoto"/>
+        <result column="gender" property="gender"/>
+        <result column="birth_date" property="birthDate"/>
         <result column="status" property="status" />
+        <result column="mail" property="mail"/>
         <result column="create_time" property="createTime" />
         <result column="update_time" property="updateTime" />
         <result column="is_del" property="isDel" />
     </resultMap>
+
+
 
 </mapper>

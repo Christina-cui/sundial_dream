@@ -1,8 +1,8 @@
 
 #mybatis
 mybatis-plus:
-  mapper-locations: classpath*:/mapper/**Mapper.xml
-  type-aliases-package: com.cuijing.sundial_dream.mapper
+  mapper-locations: classpath*:/mapper/**/*.xml
+  type-aliases-package: com.cuijing.sundial_dream.entity
   global-config:
     db-config:
       # ���ݿ�����
@@ -20,20 +20,27 @@ mybatis-plus:
       jdbc-type-for-null: null
       map-underscore-to-camel-case: true
       # log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  type-enums-package: com.cuijing.sundial_dream.enums
 
 #����Դ
 spring:
   datasource:
     driver-class-name:  com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/sundial_dreams?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=GMT
+    url: jdbc:mysql://localhost:3306/sundial_dream?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=GMT
     username: root
-    password: 123456
+    password: root
 
-  thymeleaf:
-    prefix: classpath:/templates/
+thymeleaf:
+  prefix: classpath:/templates/
+  suffix: .html
+  cache: false
+  encoding: UTF-8
+  mode: LEGACYHTML5
+  content-type: text/html
+
 
 server:
-  port: 9090
+  port: 8080
 
 
 

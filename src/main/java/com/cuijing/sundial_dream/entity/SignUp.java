@@ -13,6 +13,7 @@ import java.util.Date;
 @Data
 @TableName("t_sign_up")
 public class SignUp {
+
     /*报名id*/
     @TableId(value = "id")
     private Long signId;

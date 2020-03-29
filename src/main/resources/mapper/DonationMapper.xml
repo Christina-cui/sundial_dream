@@ -2,48 +2,54 @@
 <!--namespace命名空间，为了对sql语句进行隔离，方便管理，mapper开发dao方式，使用namespace有特殊作用  
 mapper代理开发时将namespace指定为mapper接口的全限定名  
  -->
-<mapper namespace="com.chengxusheji.mapper.DonationMapper"> 
+<mapper namespace="com.cuijing.sundial_dream.mapper.DonationMapper">
 <!--在mapper.xml文件中配置很多的sql语句，执行每个sql语句时，封装为MappedStatement对象 
-mapper.xml以statement为单位管理sql语句  
+mapper.xml以statement为单位管理sql语句
  -->
-	<!-- 添加捐款记录 -->
-	<insert id="addDonation" parameterType="donation">
-		insert into t_donation(userObj,donationMoney,dunationTime,dunationMemo,sheHeState) values 
-		(#{userObj.user_name},#{donationMoney},#{dunationTime},#{dunationMemo},#{sheHeState})
-	</insert>
+	<resultMap id="Donation" type="com.cuijing.sundial_dream.entity.Donation">
+		<id property="donationId" column="id"></id>
+		<id property="donationMoney" column="donation_money"></id>
+		<id property="donationTime" column="donation_time"></id>
+		<id property="donationMemo" column="donation_memo"></id>
+		<id property="shenHeState" column="shenHeState"></id>
+		<id property="isDel" column="is_del"></id>
+	</resultMap>
 
-	<!-- 按照查询条件分页查询捐款记录 -->
-	<select id="queryDonation" resultMap="donationMap" >
-		select t_donation.* from t_donation,t_userInfo ${where} and t_donation.userObj = t_userInfo.user_name limit #{startIndex},#{pageSize}
-	</select>
-	<resultMap id="donationMap" type="donation">
-        <id property="donationId" column="donationId" />
-        <association property="userObj" column="userObj" select="com.chengxusheji.mapper.UserInfoMapper.getUserInfo" />
-    </resultMap>
-
-    <!-- 按照查询条件查询所有捐款记录 -->
-	<select id="queryDonationList" resultMap="donationMap" >
-		select t_donation.* from t_donation,t_userInfo ${where} and t_donation.userObj = t_userInfo.user_name
-	</select>
-
-    <!-- 按照查询条件的捐款记录数 -->
-	<select id="queryDonationCount" resultType="int">
-		select count(*) from t_donation,t_userInfo ${where} and t_donation.userObj = t_userInfo.user_name
-	</select>
-
-	<!-- 根据主键查询某个捐款记录 -->
-	<select id="getDonation" parameterType="int" resultMap="donationMap">
-		select * from t_donation where t_donation.donationId = #{donationId}
+	<select id="selectAllDonation" resultMap="Donation" parameterType="com.cuijing.sundial_dream.condition.DonationCondition">
+		select * from t_donation d
+		<where>
+			d.is_del = 0
+			<if test="condition.userId != null">
+				and d.user_id = #{condition.userId}
+			</if>
+			<if test="condition.donationGeTime != null">
+				and d.donation_time <![CDATA[ >= ]]> #{condition.donationGeTime}
+			</if>
+			<if test="condition.donationLeTime != null">
+				and d.donation_time <![CDATA[ <= ]]> #{condition.donationLeTime}
+			</if>
+			<if test="condition.donationStartTime != null and condition.donationEndTime != null">
+				and (d.donation_time <![CDATA[ >= ]]> #{condition.donationStartTime} and d.donation_time <![CDATA[ <= ]]> #{condition.donationEndTime})
+			</if>
+		</where>
 	</select>
 
-	<!-- 更新捐款记录 -->
-	<update id="updateDonation" parameterType="donation">
-		update t_donation set userObj=#{userObj.user_name},donationMoney=#{donationMoney},dunationTime=#{dunationTime},dunationMemo=#{dunationMemo},sheHeState=#{sheHeState} where donationId = #{donationId}
-	</update>
-
-	<!-- 删除捐款记录 -->
-	<delete id="deleteDonation" parameterType="int">
-		delete from t_donation where donationId=#{donationId}
+	<delete id="deleteByCondition" parameterType="com.cuijing.sundial_dream.condition.DonationCondition">
+		delete from t_donation d set is_del = 1
+		<where>
+			<if test="condition.userId != null">
+				and d.user_id = #{condition.userId}
+			</if>
+			<if test="condition.donationGeTime != null">
+				and d.donation_time <![CDATA[ >= ]]> #{condition.donationGeTime}
+			</if>
+			<if test="condition.donationLeTime != null">
+				and d.donation_time <![CDATA[ <= ]]> #{condition.donationLeTime}
+			</if>
+			<if test="condition.donationStartTime != null and condition.donationEndTime != null">
+				and (d.donation_time <![CDATA[ >= ]]> #{condition.donationStartTime} and d.donation_time <![CDATA[ <= ]]> #{condition.donationEndTime})
+			</if>
+		</where>
 	</delete>
 
 </mapper>

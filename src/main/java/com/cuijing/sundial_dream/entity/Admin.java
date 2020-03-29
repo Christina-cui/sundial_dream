@@ -1,7 +1,6 @@
 package com.cuijing.sundial_dream.entity;
 
 import com.baomidou.mybatisplus.annotation.*;
-import com.yikaiye.common.data.entity.SuperEntity;
 import lombok.Data;
 
 import javax.validation.constraints.NotEmpty;

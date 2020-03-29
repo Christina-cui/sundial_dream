@@ -3,7 +3,6 @@ package com.cuijing.sundial_dream.controller;
 
 import com.cuijing.sundial_dream.entity.User;
 import com.cuijing.sundial_dream.service.UserService;
-import org.checkerframework.checker.units.qual.A;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,11 +19,28 @@ import org.springframework.web.bind.annotation.RestController;
  * @author cuijing
  * @since 2020-03-21
  */
-@Controller
+@RestController
 @RequestMapping("/user")
 public class UserController {
     @Autowired
     private UserService userService;
+
+    @RequestMapping("/login")
+    public String init(){
+        return "user/login";
+    }
+
+    @RequestMapping("/register")
+    public String register(){
+        return "user/register";
+
+    }
+
+    @RequestMapping("/")
+    public String sayHello(){
+        return "hello.html";
+    }
+
 
     @GetMapping(value = "/{id}")
     public User getOne(@PathVariable("id") long id){

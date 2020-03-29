@@ -1,5 +1,6 @@
 package com.cuijing.sundial_dream.service;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.cuijing.sundial_dream.entity.User;
 import com.baomidou.mybatisplus.extension.service.IService;
@@ -21,6 +22,13 @@ public interface UserService extends IService<User> {
     /** 根据手机号查询详细信息 */
     Optional<User> findByPhone(String phone);
 
+    /**
+     * 根据邮箱查找详细信息
+     * @param mail
+     * @return
+     */
+    Optional<User> findByMail(String mail);
+
 
     @Transactional
     int saveUser(User user);
@@ -36,7 +44,7 @@ public interface UserService extends IService<User> {
     void resetPassword(Long id);
 
 
-    List<User> findAllUserByPage(Page page);
+    IPage<User> findAllUserByPage(Page page);
 
 
 

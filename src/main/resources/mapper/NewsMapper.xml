@@ -2,47 +2,74 @@
 <!--namespace命名空间，为了对sql语句进行隔离，方便管理，mapper开发dao方式，使用namespace有特殊作用  
 mapper代理开发时将namespace指定为mapper接口的全限定名  
  -->
-<mapper namespace="com.chengxusheji.mapper.NewsMapper"> 
-<!--在mapper.xml文件中配置很多的sql语句，执行每个sql语句时，封装为MappedStatement对象 
-mapper.xml以statement为单位管理sql语句  
- -->
-	<!-- 添加新闻信息记录 -->
-	<insert id="addNews" parameterType="news">
-		insert into t_news(title,newClass,content,publishDate) values 
-		(#{title},#{newClass},#{content},#{publishDate})
-	</insert>
+<mapper namespace="com.cuijing.sundial_dream.mapper.NewsMapper">
+	<!--在mapper.xml文件中配置很多的sql语句，执行每个sql语句时，封装为MappedStatement对象
+    mapper.xml以statement为单位管理sql语句
+     -->
+	<!-- 添加留言记录 -->
+	<resultMap id="News" type="com.cuijing.sundial_dream.entity.News">
+		<id property="newsId" column="id"></id>
+		<id property="userId" column="user_id"></id>
+		<id property="title" column="title"></id>
+		<id property="newsType" column="new_type"></id>
+		<id property="content" column="content"></id>
+		<id property="publishDate" column="publish_time"></id>
+		<id property="isDel" column="is_del"></id>
+	</resultMap>
 
-	<!-- 按照查询条件分页查询新闻信息记录 -->
-	<select id="queryNews" resultMap="newsMap" >
-		select t_news.* from t_news ${where} limit #{startIndex},#{pageSize}
+	<select id="selectNewsByPage" resultMap="News" parameterType="com.cuijing.sundial_dream.condition.NewsCondition">
+		select * from t_news n
+		<where>
+			n.is_del = 0
+			<if test="condition.id != null">
+				and n.id = #{condition.id}
+			</if>
+			<if test="condition.title != null">
+				and n.title like concat("%",#{condition.title},"%")
+			</if>
+			<if test="condition.userId != null">
+				and n.user_id = #{condition.userId}
+			</if>
+			<if test="condition.newsType != null">
+				and n.news_type = #{condition.newsType}
+			</if>
+			<if test="condition.newsGeTime != null">
+				and n.publish_date <![CDATA[ >= ]]> #{condition.newsGeTime}
+			</if>
+			<if test="condition.newsLeTime != null">
+				and n.publish_date <![CDATA[ <= ]]> #{condition.newsLeTime}
+			</if>
+			<if test="condition.newsStartTime != null and condition.newsEndTime != null">
+				and (n.publish_date <![CDATA[ >= ]]> #{condition.newsStartTime} and n.publish_date <![CDATA[ <= ]]> #{condition.newsEndTime})
+			</if>
+		</where>
 	</select>
-	<resultMap id="newsMap" type="news">
-        <id property="newsId" column="newsId" />
-    </resultMap>
 
-    <!-- 按照查询条件查询所有新闻信息记录 -->
-	<select id="queryNewsList" resultMap="newsMap" >
-		select t_news.* from t_news ${where}
-	</select>
-
-    <!-- 按照查询条件的新闻信息记录数 -->
-	<select id="queryNewsCount" resultType="int">
-		select count(*) from t_news ${where}
-	</select>
-
-	<!-- 根据主键查询某个新闻信息记录 -->
-	<select id="getNews" parameterType="int" resultMap="newsMap">
-		select * from t_news where t_news.newsId = #{newsId}
-	</select>
-
-	<!-- 更新新闻信息记录 -->
-	<update id="updateNews" parameterType="news">
-		update t_news set title=#{title},newClass=#{newClass},content=#{content},publishDate=#{publishDate} where newsId = #{newsId}
-	</update>
-
-	<!-- 删除新闻信息记录 -->
-	<delete id="deleteNews" parameterType="int">
-		delete from t_news where newsId=#{newsId}
+	<delete id="deleteManyNews" parameterType="com.cuijing.sundial_dream.condition.SignUpCondition">
+		delete from t_news n set is_del = 1
+		<where>
+			<if test="condition.id != null">
+				and n.id = #{condition.id}
+			</if>
+			<if test="condition.title != null">
+				and n.title like concat("%",#{condition.title},"%")
+			</if>
+			<if test="condition.userId != null">
+				and n.user_id = #{condition.userId}
+			</if>
+			<if test="condition.newsType != null">
+				and n.news_type = #{condition.newsType}
+			</if>
+			<if test="condition.newsGeTime != null">
+				and n.publish_date <![CDATA[ >= ]]> #{condition.newsGeTime}
+			</if>
+			<if test="condition.newsLeTime != null">
+				and n.publish_date <![CDATA[ <= ]]> #{condition.newsLeTime}
+			</if>
+			<if test="condition.newsStartTime != null and condition.newsEndTime != null">
+				and (n.publish_date <![CDATA[ >= ]]> #{condition.newsStartTime} and n.publish_date <![CDATA[ <= ]]> #{condition.newsEndTime})
+			</if>
+		</where>
 	</delete>
 
 </mapper>

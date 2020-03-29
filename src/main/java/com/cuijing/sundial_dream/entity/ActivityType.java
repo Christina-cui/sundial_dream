@@ -3,7 +3,6 @@ package com.cuijing.sundial_dream.entity;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableLogic;
 import com.baomidou.mybatisplus.annotation.TableName;
-import com.yikaiye.common.data.entity.SuperEntity;
 import lombok.Data;
 import com.alibaba.fastjson.JSONException;
 import com.alibaba.fastjson.JSONObject;

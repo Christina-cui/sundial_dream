@@ -1,17 +1,16 @@
 package com.cuijing.sundial_dream.service.impl;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.cuijing.sundial_dream.common.error.CommonErrors;
 import com.cuijing.sundial_dream.entity.User;
 import com.cuijing.sundial_dream.mapper.UserMapper;
 import com.cuijing.sundial_dream.service.UserService;
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.yikaiye.common.error.CommonErrors;
-import org.checkerframework.checker.units.qual.A;
+import com.cuijing.sundial_dream.utils.QueryWrappers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.Optional;
 
 /**
@@ -23,7 +22,7 @@ import java.util.Optional;
  * @since 2020-03-21
  */
 @Service
-public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements UserService {
+public class UserServiceImpl extends BaseServiceImpl<UserMapper, User> implements UserService {
 
     private static final String DEFAULT_PASSWORD = "Aa123456";
     @Autowired
@@ -40,8 +39,14 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     }
 
     @Override
+    public Optional<User> findByMail(String mail) {
+        return Optional.ofNullable(baseMapper.selectByMail(mail));
+    }
+
+    @Override
     public int saveUser(User user) {
         CommonErrors.CONFLICT.check(baseMapper.countByPhone(user.getPhone()) <= 0, "手机号码已存在");
+        CommonErrors.CONFLICT.check(baseMapper.selectByMail(user.getMail())!=null,"邮箱已被注册");
         user.setPassword(passwordEncoder.encode(DEFAULT_PASSWORD));
         return baseMapper.insert(user);
     }
@@ -58,11 +63,12 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
 
     @Override
     public void resetPassword(Long id) {
-
+        String password = passwordEncoder.encode(DEFAULT_PASSWORD);
+        baseMapper.updatePwdById(password,id);
     }
 
     @Override
-    public List<User> findAllUserByPage(Page page) {
-        return null;
+    public IPage<User> findAllUserByPage(Page page) {
+        return baseMapper.selectPage(page, QueryWrappers.wrapper());
     }
 }

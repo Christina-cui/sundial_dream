@@ -1,7 +1,6 @@
 package com.cuijing.sundial_dream.entity;
 
 import com.baomidou.mybatisplus.annotation.*;
-import com.yikaiye.common.data.entity.SuperEntity;
 import lombok.Data;
 
 import javax.validation.constraints.NotEmpty;
@@ -22,13 +21,6 @@ import java.util.Date;
 public class User extends SuperEntity {
 
     private static final long serialVersionUID=1L;
-
-    /**
-     * 主键标识
-     */
-    @TableId(value = "id", type = IdType.AUTO)
-    private Long id;
-
     /**
      * 手机号
      */

@@ -10,8 +10,7 @@ import com.cuijing.sundial_dream.mapper.ActivityInfoMapper;
 import com.cuijing.sundial_dream.mapper.ActivityTypeMapper;
 import com.cuijing.sundial_dream.service.ActivityInfoService;
 import com.cuijing.sundial_dream.service.ActivityTypeService;
-import com.yikaiye.common.data.service.impl.BaseServiceImpl;
-import com.yikaiye.common.utils.QueryWrappers;
+import com.cuijing.sundial_dream.utils.QueryWrappers;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -38,16 +37,16 @@ public class ActivityTypeServiceImpl extends BaseServiceImpl<ActivityTypeMapper,
 
     @Override
     public Optional<ActivityType> findActivityType(int typeId) {
-        return baseMapper.selectById();
+        return Optional.ofNullable(baseMapper.selectById(typeId));
     }
 
     @Override
     public boolean updateActivityType(ActivityType activityType) {
-        return false;
+        return saveOrUpdate(activityType);
     }
 
     @Override
     public boolean deleteActivityType(int typeId) {
-        return false;
+        return deleteById(typeId);
     }
 }

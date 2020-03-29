@@ -38,5 +38,18 @@ public interface AllEnum {
         }
 
     }
+    enum NewsTypeEnum implements IEnum{
+
+        支援快讯,
+        个人风采,
+        组织风采,
+        活动风采,
+        通知公告;
+
+        @Override
+        public Integer getValue() {
+            return this.ordinal();
+        }
+    }
 
 }

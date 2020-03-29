@@ -8,9 +8,8 @@ import com.cuijing.sundial_dream.condition.ActivityInfoCondition;
 import com.cuijing.sundial_dream.entity.ActivityInfo;
 import com.cuijing.sundial_dream.mapper.ActivityInfoMapper;
 import com.cuijing.sundial_dream.service.ActivityInfoService;
-import com.yikaiye.common.data.service.impl.BaseServiceImpl;
-import com.yikaiye.common.utils.Lambdas;
-import com.yikaiye.common.utils.QueryWrappers;
+import com.cuijing.sundial_dream.utils.Lambdas;
+import com.cuijing.sundial_dream.utils.QueryWrappers;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -29,7 +28,7 @@ public class ActivityInfoServiceImpl extends BaseServiceImpl<ActivityInfoMapper,
     @Override
     public IPage<ActivityInfo> findActivityWithType(ActivityInfoCondition condition, Page page) {
         QueryWrapper<ActivityInfo> wrapper = QueryWrappers.wrapper();
-        Lambdas.apply(condition.getTitle(),v -> wrapper.like("title",condition.getTitle()));
+        Lambdas.apply(condition.getTitle(), v -> wrapper.like("title",condition.getTitle()));
         Lambdas.apply(condition.getTypeId(),v->wrapper.eq("type_id",condition.getTypeId()));
         IPage<ActivityInfo> pageList = baseMapper.selectPage(page,wrapper);
         return pageList;

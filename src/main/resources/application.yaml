@@ -30,6 +30,7 @@ spring:
     username: root
     password: root
 
+
 thymeleaf:
   prefix: classpath:/templates/
   suffix: .html
@@ -37,6 +38,9 @@ thymeleaf:
   encoding: UTF-8
   mode: LEGACYHTML5
   content-type: text/html
+
+
+
 
 
 server:

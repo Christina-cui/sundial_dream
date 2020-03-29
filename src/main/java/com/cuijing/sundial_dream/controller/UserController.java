@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @author cuijing
  * @since 2020-03-21
  */
-@RestController
+@Controller
 @RequestMapping("/user")
 public class UserController {
     @Autowired
@@ -38,7 +38,7 @@ public class UserController {
 
     @RequestMapping("/")
     public String sayHello(){
-        return "hello.html";
+        return "index.html";
     }
 
 
@@ -49,7 +49,7 @@ public class UserController {
 
     @RequestMapping("/test")
     public String test(){
-        return "html";
+        return "index.html";
     }
 
 }

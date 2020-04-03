@@ -22,23 +22,19 @@ mybatis-plus:
       # log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
   type-enums-package: com.cuijing.sundial_dream.enums
 
-#����Դ
+
 spring:
   datasource:
     driver-class-name:  com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/sundial_dream?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=GMT
     username: root
     password: root
-
-
-thymeleaf:
-  prefix: classpath:/templates/
-  suffix: .html
-  cache: false
-  encoding: UTF-8
-  mode: LEGACYHTML5
-  content-type: text/html
-
+  thymeleaf:
+    prefix: classpath:/templates/
+    suffix: .html
+    cache: false
+    encoding: UTF-8
+    mode: LEGACYHTML5
 
 
 

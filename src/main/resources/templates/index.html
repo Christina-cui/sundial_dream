@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <link>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -9,14 +9,18 @@
     <meta name="keywords" content="">
 
     <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700|Montserrat:300,400,700,900" rel="stylesheet">
-    <link rel="stylesheet" href="css/custom.css" type="text/css">
-    <link rel="stylesheet" href="/css/style.min.css">
-    <link rel="stylesheet" href="/css/style.css">
+
+    <link type="text/css" rel="stylesheet" href="css/style.min.css">
+    <link type="text/css" rel="stylesheet" href="css/styles-merged.css">
 
     <!--[if lt IE 9]>
     <script src="js/vendor/html5shiv.min.js"></script>
     <script src="js/vendor/respond.min.js"></script>
     <![endif]-->
+<script src="js/scripts.min.js"></script>
+<script src="js/main.min.js"></script>
+<script src="js/custom.js"></script>
+
 </head>
 <body>
 
@@ -25,25 +29,34 @@
     <div class="container">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false" aria-controls="navbar">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
+                <span class="sr-only">"暖阳公益"</span>
+                <span class="icon-bar">一灯如豆</span>
+                <span class="icon-bar">万盏燎原</span>
             </button>
-            <a class="navbar-brand" href="index.html" title="uiCookies:Enlight">Enlight</a>
+            <a class="navbar-brand" href="index.html"></a>
         </div>
 
         <div id="navbar-collapse" class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
-                <li class="active"><a href="index.html">Home</a></li>
-                <li><a href="about.html">About Us</a></li>
-                <li><a href="news.html">News</a></li>
-                <li><a href="causes.html">Causes</a></li>
-                <li class="dropdown">
-                    <a href="#" data-toggle="dropdown" class="dropdown-toggle">Pages</a>
+                <li class="active"><a href="index.html">主页</a></li>
+                <li><a href="#">公益咨询</a></li>
+                <li><a href="#">志愿招募</a></li>
+                <li>
+                    <a href="#" data-toggle="dropdown" class="dropdown-toggle">志愿风采</a>
                     <ul class="dropdown-menu">
-                        <li><a href="about.html">About Us</a></li>
-                        <li><a href="testimonial.html">Testimonial</a></li>
+                        <li><a href="#">活动风采</a></li>
+                        <li><a href="#">特色活动</a></li>
+                        <li><a href="#">团队</a></li>
+                        <li><a href="#">个人</a></li>
+                    </ul>
+                </li>
+                <li><a href="#">公益论坛</a></li>
+                <li><a href="#">公益求助</a> </li>
+                <li class="dropdown">
+                    <a href="#" data-toggle="dropdown" class="dropdown-toggle">更多</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="about.html">1</a></li>
+                        <li><a href="testimonial.html">2</a></li>
                         <li><a href="cause-single.html">Cause Single</a></li>
                         <li><a href="gallery.html">Gallery</a></li>
                         <li class="dropdown-submenu dropdown">
@@ -60,7 +73,7 @@
                     </ul>
                 </li>
 
-                <li class="probootstra-cta-button last"><a href="donate.html" class="btn btn-primary">Donate</a></li>
+                <li class="probootstra-cta-button last"><a href="donate.html" class="btn btn-primary">我要捐</a></li>
             </ul>
         </div>
     </div>
@@ -71,8 +84,8 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="probootstrap-slider-text probootstrap-animate" data-animate-effect="fadeIn">
-                    <h1 class="probootstrap-heading probootstrap-animate">Donate <span>Together we can make a difference</span></h1>
-                    <p class="probootstrap-animate"><a href="#" class="btn btn-primary btn-lg">Donate Now</a></p>
+                    <h1 class="probootstrap-heading probootstrap-animate">愿你被这个世界温柔以待 <span>一灯如豆，万盏燎原</span></h1>
+                    <p class="probootstrap-animate"><a href="#" class="btn btn-primary btn-lg">点击捐赠</a></p>
                 </div>
             </div>
         </div>
@@ -85,9 +98,9 @@
                         <i class="icon-wallet"></i>
                     </div>
                     <div class="text">
-                        <h2>Give Donation</h2>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit</p>
-                        <p><a href="#">Lear More</a></p>
+                        <h2>我有志愿活动！</h2>
+                        <p>我们一直在路上</p>
+                        <p><a href="#">活动申请</a></p>
                     </div>
                 </div>
                 <div class="item probootstrap-animate" data-animate-effect="fadeIn">
@@ -95,9 +108,9 @@
                         <i class="icon-heart"></i>
                     </div>
                     <div class="text">
-                        <h2>Become Volunteer</h2>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit</p>
-                        <p><a href="#">Lear More</a></p>
+                        <h2>我要当志愿者！</h2>
+                        <p>虽然不曾谋面，但是还是很想谢谢你</p>
+                        <p><a href="#">活动报名</a></p>
                     </div>
                 </div>
                 <div class="item probootstrap-animate" data-animate-effect="fadeIn">
@@ -105,9 +118,9 @@
                         <i class="icon-graduation-cap"></i>
                     </div>
                     <div class="text">
-                        <h2>Give Scholarship</h2>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit</p>
-                        <p><a href="#">Lear More</a></p>
+                        <h2>我需要帮助！</h2>
+                        <p>世界的尽头依旧有爱</p>
+                        <p><a href="#">帮帮我</a></p>
                     </div>
                 </div>
             </div>
@@ -454,9 +467,7 @@
     </div>
 </footer>
 
-<script src="/js/scripts.min.js"></script>
-<script src="/js/main.min.js"></script>
-<script src="/js/custom.js"></script>
+
 
 </body>
 </html>

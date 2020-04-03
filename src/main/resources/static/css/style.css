@@ -1,7 +1,7 @@
 @font-face {
   font-family: 'icomoon';
-  src: url("../fonts/icomoon/icomoon.eot?1z9v6x");
-  src: url("../fonts/icomoon/icomoon.eot?1z9v6x#iefix") format("embedded-opentype"), url("../fonts/icomoon/icomoon.ttf?1z9v6x") format("truetype"), url("../fonts/icomoon/icomoon.woff?1z9v6x") format("woff"), url("../fonts/icomoon/icomoon.svg?1z9v6x#icomoon") format("svg");
+  src: url("fonts/icomoon/icomoon.eot?1z9v6x");
+  src: url("fonts/icomoon/icomoon.eot?1z9v6x#iefix") format("embedded-opentype"), url("fonts/icomoon/icomoon.ttf?1z9v6x") format("truetype"), url("fonts/icomoon/icomoon.woff?1z9v6x") format("woff"), url("fonts/icomoon/icomoon.svg?1z9v6x#icomoon") format("svg");
   font-weight: normal;
   font-style: normal;
 }
@@ -282,7 +282,7 @@ a:hover, a:focus, a:active {
   padding-bottom: 0 !important;
   font-size: 30px;
   text-transform: uppercase;
-  background: url(../img/logo.png) no-repeat left 100%;
+  background: url(img/logo.png) no-repeat left 100%;
   top: 24px;
   position: relative;
   width: 220px;
@@ -306,7 +306,7 @@ a:hover, a:focus, a:active {
     position: relative;
     width: 220px;
     height: 43px;
-    background: url(../img/logo@2x.png) no-repeat left 100%;
+    background: url(img/logo@2x.png) no-repeat left 100%;
     background-size: cover;
   }
 }

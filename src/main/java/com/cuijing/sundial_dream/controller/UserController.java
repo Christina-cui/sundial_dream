@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @author cuijing
  * @since 2020-03-21
  */
-@Controller
+@RestController
 @RequestMapping("/user")
 public class UserController {
     @Autowired
@@ -27,7 +27,7 @@ public class UserController {
 
     @RequestMapping("/login")
     public String init(){
-        return "user/login";
+        return "www.baidu.com";
     }
 
     @RequestMapping("/register")
@@ -35,12 +35,6 @@ public class UserController {
         return "user/register";
 
     }
-
-    @RequestMapping("/")
-    public String sayHello(){
-        return "index.html";
-    }
-
 
     @GetMapping(value = "/{id}")
     public User getOne(@PathVariable("id") long id){

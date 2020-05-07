@@ -5,11 +5,11 @@ mybatis-plus:
   type-aliases-package: com.cuijing.sundial_dream.entity
   global-config:
     db-config:
-      # ���ݿ�����
+
       db-type: mysql
-      # ��������  AUTO:"���ݿ�ID����", INPUT:"�û�����ID",ID_WORKER:"ȫ��ΨһID (��������ΨһID)", UUID:"ȫ��ΨһID UUID";
+
       id-type: auto
-      # �ֶβ��� IGNORED:"�����ж�",NOT_NULL:"�� NULL �ж�"),NOT_EMPTY:"�ǿ��ж�"
+
       field-strategy: not_empty
       logic-delete-value: 1
       logic-not-delete-value: 0
@@ -26,21 +26,15 @@ mybatis-plus:
 spring:
   datasource:
     driver-class-name:  com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/sundial_dream?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=GMT
+    url: jdbc:mysql://localhost:3306/book_db?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=GMT
     username: root
     password: root
-  thymeleaf:
-    prefix: classpath:/templates/
-    suffix: .html
-    cache: false
-    encoding: UTF-8
-    mode: LEGACYHTML5
 
 
 
 
 server:
-  port: 8080
+  port: 9191
 
 
 

@@ -14,12 +14,12 @@
 
 <div data-options="region:'north',title:'header',split:true,noheader:true"
      style="height:60px;background-color:#01B1EA;">
-    <div class="logo">XXX系统后台管理</div>
+    <div class="logo">暖阳公益志愿网后台管理</div>
     <div class="logout">您好，<%=session.getAttribute("username")%> | <a href="logout">退出</a></div>
 </div>
 <div data-options="region:'south',title:'footer',split:true,noheader:true"
      style="height:35px;line-height:30px;text-align:center;">
-    &copy; Powered by dashen
+    &copy; Powered by cuijing
 </div>
 <div data-options="region:'west',title:'导航',split:true,iconCls:'icon-world'" style="width:200px;padding:10px;">
     <ul id="nav"></ul>

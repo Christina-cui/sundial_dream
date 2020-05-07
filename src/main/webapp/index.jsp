@@ -20,7 +20,7 @@
     <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700|Montserrat:300,400,700,900" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700|Montserrat:300,400,700,900" rel="stylesheet">
 
-    <link type="text/css" rel="stylesheet" href="<%=basePath %>indexCss/style.min.css">
+    <link type="text/css" rel="stylesheet" href="indexCss/style.min.css">
     <link type="text/css" rel="stylesheet" href="<%=basePath %>indexCss/styles-merged.css">
 
     <script src="<%=basePath%>indexJS/scripts.min.js"></script>

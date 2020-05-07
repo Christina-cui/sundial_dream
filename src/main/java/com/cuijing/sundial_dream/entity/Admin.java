@@ -26,4 +26,14 @@ public class Admin extends SuperEntity {
     @TableField(value = "is_del")
     @TableLogic
     private Integer isDel;
+
+
+    public Admin(@NotEmpty(message = "用户名不能为空") String username, @NotEmpty(message = "登陆密码不能为空") String password) {
+
+        this.username = username;
+        this.password = password;
+    }
+
+    public Admin() {
+    }
 }

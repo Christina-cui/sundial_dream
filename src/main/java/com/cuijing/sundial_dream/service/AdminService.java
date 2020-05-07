@@ -4,14 +4,11 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.cuijing.sundial_dream.entity.Admin;
-import com.cuijing.sundial_dream.entity.User;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.ws.soap.addressing.server.AbstractActionMethodEndpointMapping;
-
-import java.util.List;
-import java.util.Optional;
 
 public interface AdminService extends IService<Admin> {
+
+    public String getErrMessage();
 
     /*验证用户登录*/
     Admin checkLogin(Admin admin);
@@ -41,8 +38,9 @@ public interface AdminService extends IService<Admin> {
 
     /**
      * 根据用户名查找管理员对象
+     * @return
      */
-    Optional<Admin> findAdminByName(String name);
+    Admin findAdminByName(String name);
 
     /**
      * 新增管理员
@@ -50,4 +48,5 @@ public interface AdminService extends IService<Admin> {
     @Transactional
     Admin saveAdmin(Admin admin);
 
+    Admin findAdminByUserName(String username);
 }

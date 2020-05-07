@@ -45,7 +45,7 @@
             String user_name = (String) session.getAttribute("user_name");
             if (user_name == null) {
         %>
-        <li class="probootstra-cta-button last"><a href="login1.jsp" class="btn btn-primary">登录</a></li>
+        <li class="probootstra-cta-button last"><a href="frontLogin.jsp" class="btn btn-primary">登录</a></li>
         <% } else { %>
         <li class="dropdown">
             <a id="dLabel" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

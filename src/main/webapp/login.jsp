@@ -1,91 +1,45 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: 11957
-  Date: 2020/4/25
-  Time: 16:44
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ page language="java" import="java.util.*" pageEncoding="UTF-8" %>
-<%
-    String path = request.getContextPath();
-    String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path + "/";
-%>
+﻿<%@ page language="java" pageEncoding="UTF-8" %>
+<!DOCTYPE html>
 <html>
 <head>
-    <title>登录</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=gb2312"/>
+    <title>信息管理系统_用户登录</title>
 
-    <link rel="stylesheet" href="<%=basePath%>css/login/reset.css"/>
-    <link rel="stylesheet" href="<%=basePath%>css/login/common.css"/>
-    <link rel="stylesheet" href="<%=basePath%>css/login/font-awesome.min.css"/>
+    <link rel="stylesheet" type="text/css" href="easyui/themes/default/easyui.css"/>
+    <link rel="stylesheet" type="text/css" href="easyui/themes/icon.css"/>
+    <link rel="stylesheet" type="text/css" href="css/login.css"/>
 </head>
 <body>
-<div class="wrap login_wrap">
-    <div class="ceng">
-        <div class="content">
-            <div class="logo"></div>
-            <div class="login_box">
 
-                <div class="login_form">
-                    <div class="login_title">
-                        登录
-                    </div>
-                    <form method="post">
 
-                        <div class="form_text_ipt">
-                            <input name="userName" type="text" placeholder="会员号/手机号/邮箱">
-                        </div>
-                        <div class="ececk_warning"><span>手机号/邮箱不能为空</span></div>
-                        <div class="form_text_ipt">
-                            <input name="password" type="password" placeholder="密码">
-                        </div>
-                        <div class="ececk_warning"><span>密码不能为空</span></div>
-                        <div class="form_check_ipt">
-                            <div class="left check_left">
-                                <label><input name="checked" type="checkbox"> 下次自动登录</label>
-                            </div>
-                            <div class="right check_right">
-                                <a href="#">忘记密码</a>
-                            </div>
-                        </div>
-                        <div class="form_btn">
-                            <input type="submit" value="登录" name="login" onclick="ajaxLogin();">
-                            <!-- <button type="button" onclick="javascript:window.location.href='#'">登录</button> -->
-                        </div>
-                        <div class="error">${error }</div>
-                        <div class="form_reg_btn">
-                            <span>还没有帐号？</span><a href="${pageContext.request.contextPath }/register.jsp">马上注册</a>
-                            <a href="${pageContext.request.contextPath }/index1.jsp">退出</a>
-                        </div>
-                    </form>
+<div id="login">
+    <p>登录帐号：<input type="text" id="manager" class="textbox"></p>
+    <p>登录密码：<input type="password" id="password" class="textbox"></p>
+    <p style="display:none;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;身份：
+        <select name="identify" id="identify">AZ
+            <option value="admin">超级管理员</option>
+            <option value="departAdmin">部门管理员</option>
+            <option value="ssAdmin">实施人员</option>
+            KK
+            <option value="kfAdmin">客服人员</option>
+        </select>
+    </p>
+    <p><font color="#999">记住账号</font>
+        <input id="saveid" type="checkbox" onclick="savePaw();"/>
+    </p>
 
-                </div>
-            </div>
-        </div>
-    </div>
 </div>
-<script type="text/javascript" src="<%=basePath%>/js/login/jquery.min.js"></script>
 
-<script>
-    function ajaxLogin() {
-        $.ajax({
-            url: "<%=basePath%>frontLogin",
-            type: 'post',
-            dataType: "json",
-            data: {
-                "userName": $('#userName').val(),
-                "password": $('#password').val(),
-            },
-            success: function (obj, response, status) {
-                if (obj.success) {
+<div id="btn">
+    <a href="#" class="easyui-linkbutton">登录</a>
+</div>
 
-                    location.href = "<%=basePath%>index.jsp";
-                } else {
-                    alert(obj.msg);
-                }
-            }
-        });
-    }
-</script>
+<script type="text/javascript" src="easyui/jquery.min.js"></script>
+<script type="text/javascript" src="easyui/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="easyui/locale/easyui-lang-zh_CN.js"></script>
+<script type="text/javascript" src="easyui/jquery.cookie.js"></script>
+<script type="text/javascript" src="js/login.js"></script>
+
 </body>
+</html>
 </html>

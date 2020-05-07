@@ -7,19 +7,19 @@
 <div id="navbar-collapse" class="navbar-collapse collapse">
     <ul class="nav navbar-nav navbar-right">
         <li class="active"><a href="index1.jsp">主页</a></li>
-        <li><a href="#">公益咨询</a></li>
-        <li><a href="#">志愿招募</a></li>
+        <li><a href="#">公益捐款</a></li>
+        <li><a href="<%=basePath %>ActivityInfo/frontlist">志愿招募</a></li>
         <li>
             <a href="#" data-toggle="dropdown" class="dropdown-toggle">志愿风采</a>
             <ul class="dropdown-menu">
                 <li><a href="#">活动风采</a></li>
                 <li><a href="#">特色活动</a></li>
                 <li><a href="#">团队</a></li>
-                <li><a href="#">个人</a></li>
+                <li><a href="<%=basePath %>UserInfo/frontlist">个人</a></li>
             </ul>
         </li>
-        <li><a href="#">公益论坛</a></li>
-        <li><a href="#">公益求助</a></li>
+        <li><a href="<%=basePath %>News/frontlist">公益新闻</a></li>
+        <li><a href="<%=basePath %>Leaveword/frontlist">公益留言</a></li>
         <li class="dropdown">
             <a href="#" data-toggle="dropdown" class="dropdown-toggle">更多</a>
             <ul class="dropdown-menu">

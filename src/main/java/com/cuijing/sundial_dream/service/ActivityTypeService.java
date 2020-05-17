@@ -21,13 +21,13 @@ public interface ActivityTypeService extends IService<ActivityType> {
     List<ActivityType> findAllType();
 
     /*根据主键获取活动类型记录*/
-    Optional<ActivityType> findActivityType(int typeId);
+    Optional<ActivityType> findActivityTypeById(Long typeId);
 
     /*更新活动类型记录*/
     boolean updateActivityType(ActivityType activityType);
 
     /*删除一条活动类型记录*/
-    boolean deleteActivityType (int typeId);
+    boolean deleteActivityType (Long typeId);
 
 
 

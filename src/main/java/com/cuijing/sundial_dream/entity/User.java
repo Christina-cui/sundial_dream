@@ -16,7 +16,7 @@ import java.util.Date;
  * @author cuijing
  * @since 2020-03-21
  */
-@TableName("user")
+@TableName("t_user")
 @Data
 public class User extends SuperEntity {
 
@@ -69,8 +69,8 @@ public class User extends SuperEntity {
     /**
      * 邮箱
      */
-    @TableField(value = "mail")
-    private String mail;
+    @TableField(value = "email")
+    private String email;
 
 
     /**

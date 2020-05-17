@@ -20,14 +20,16 @@ public interface UserService extends IService<User> {
     User getOne(Long id);
 
     /** 根据手机号查询详细信息 */
-    Optional<User> findByPhone(String phone);
+    User findByPhone(String phone);
 
     /**
      * 根据邮箱查找详细信息
      * @param mail
      * @return
      */
-    Optional<User> findByMail(String mail);
+    User findByMail(String mail);
+
+    User findByName(String userName);
 
 
     @Transactional
@@ -45,6 +47,8 @@ public interface UserService extends IService<User> {
 
 
     IPage<User> findAllUserByPage(Page page);
+
+    String checkLogin(String userName,String password);
 
 
 

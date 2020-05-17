@@ -1,16 +1,5 @@
 package com.cuijing.sundial_dream.controller;
 
-import java.beans.PropertyEditorSupport;
-import java.io.File;
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.UUID;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
 import com.alibaba.fastjson.JSONException;
 import com.alibaba.fastjson.JSONObject;
 import com.cuijing.sundial_dream.utils.UserException;
@@ -20,10 +9,17 @@ import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.beans.PropertyEditorSupport;
+import java.io.File;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.UUID;
 
 public class BaseController {
-
-
     @InitBinder
     // 必须有一个参数WebDataBinder
     public void initBinder(WebDataBinder binder) {
@@ -103,7 +99,7 @@ public class BaseController {
                 throw new UserException("图片格式不正确！");
             /**使用UUID生成文件名称**/
             String photoBookFileName = UUID.randomUUID().toString() + suffix;//构建文件名称
-            //String logImageName = multipartFile.getOriginalFilename();  
+            //String logImageName = multipartFile.getOriginalFilename();
             /**拼成完整的文件保存路径加文件**/
             String photoBookFilePath = photoBookRealPathDir + File.separator + photoBookFileName;
             File photoBookFile = new File(photoBookFilePath);
@@ -143,7 +139,7 @@ public class BaseController {
                     (multipartFile_photoBook.getOriginalFilename().lastIndexOf("."));
             /**使用UUID生成文件名称**/
             String photoBookFileName = UUID.randomUUID().toString() + suffix;//构建文件名称
-            //String logImageName = multipartFile.getOriginalFilename();  
+            //String logImageName = multipartFile.getOriginalFilename();
             /**拼成完整的文件保存路径加文件**/
             String photoBookFilePath = photoBookRealPathDir + File.separator + photoBookFileName;
             File photoBookFile = new File(photoBookFilePath);
@@ -170,6 +166,4 @@ public class BaseController {
         out.flush();
         out.close();
     }
-
-
 }

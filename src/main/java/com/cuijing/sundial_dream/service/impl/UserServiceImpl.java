@@ -1,6 +1,7 @@
 package com.cuijing.sundial_dream.service.impl;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.core.toolkit.ObjectUtils;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.cuijing.sundial_dream.common.error.CommonErrors;
 import com.cuijing.sundial_dream.entity.User;
@@ -11,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.Objects;
 import java.util.Optional;
 
 /**
@@ -33,20 +35,39 @@ public class UserServiceImpl extends BaseServiceImpl<UserMapper, User> implement
         return baseMapper.selectById(id);
     }
 
+
+
     @Override
-    public Optional<User> findByPhone(String phone) {
-        return Optional.ofNullable(baseMapper.selectByPhone(phone));
+    public User findByPhone(String phone) {
+        Optional<User> op = Optional.ofNullable(baseMapper.selectByPhone(phone));
+        if(op.isPresent()){
+            return op.get();
+        }
+        return null;
     }
 
     @Override
-    public Optional<User> findByMail(String mail) {
-        return Optional.ofNullable(baseMapper.selectByMail(mail));
+    public User findByMail(String mail) {
+        Optional<User> op = Optional.ofNullable(baseMapper.selectByMail(mail));
+        if(op.isPresent()){
+            return op.get();
+        }
+        return null;
+    }
+
+    @Override
+    public User findByName(String userName) {
+        Optional<User> op = Optional.ofNullable(baseMapper.selectByMail(userName));
+        if(op.isPresent()){
+            return op.get();
+        }
+        return null;
     }
 
     @Override
     public int saveUser(User user) {
         CommonErrors.CONFLICT.check(baseMapper.countByPhone(user.getPhone()) <= 0, "手机号码已存在");
-        CommonErrors.CONFLICT.check(baseMapper.selectByMail(user.getMail())!=null,"邮箱已被注册");
+        CommonErrors.CONFLICT.check(baseMapper.selectByMail(user.getEmail())!=null,"邮箱已被注册");
         user.setPassword(passwordEncoder.encode(DEFAULT_PASSWORD));
         return baseMapper.insert(user);
     }
@@ -70,5 +91,24 @@ public class UserServiceImpl extends BaseServiceImpl<UserMapper, User> implement
     @Override
     public IPage<User> findAllUserByPage(Page page) {
         return baseMapper.selectPage(page, QueryWrappers.wrapper());
+    }
+
+    @Override
+    public String checkLogin(String userName, String password) {
+        User user = findByName(userName);
+        if(ObjectUtils.isNull(user)){
+            user = findByMail(userName);
+            if(ObjectUtils.isNull(user)){
+                user = findByPhone(userName);
+            }
+        }
+        if(ObjectUtils.isNotNull(user)){
+            if(Objects.equals(user.getPassword(),password)){
+                return "success";
+            }else{
+                return "密码错误";
+            }
+        }
+        return "该用户不存在";
     }
 }

@@ -18,7 +18,7 @@
                 <li><a href="<%=basePath %>UserInfo/frontlist">个人</a></li>
             </ul>
         </li>
-        <li><a href="<%=basePath %>News/frontlist">公益新闻</a></li>
+        <li><a href="<%=basePath %>News/frontlist">公益资讯</a></li>
         <li><a href="<%=basePath %>Leaveword/frontlist">公益留言</a></li>
         <li class="dropdown">
             <a href="#" data-toggle="dropdown" class="dropdown-toggle">更多</a>

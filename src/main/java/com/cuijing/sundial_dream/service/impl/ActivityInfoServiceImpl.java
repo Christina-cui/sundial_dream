@@ -22,15 +22,18 @@ public class ActivityInfoServiceImpl extends BaseServiceImpl<ActivityInfoMapper,
 
     @Override
     public boolean saveActivityInfo(ActivityInfo activityInfo) {
-        return saveOrUpdate(activityInfo);
+        if(findByName(activityInfo.getTitle())==null){
+            return save(activityInfo);
+        }else
+            return false;
+
     }
 
     @Override
     public IPage<ActivityInfo> findActivityWithType(ActivityInfoCondition condition, Page page) {
-        QueryWrapper<ActivityInfo> wrapper = QueryWrappers.wrapper();
-        Lambdas.apply(condition.getTitle(), v -> wrapper.like("title",condition.getTitle()));
-        Lambdas.apply(condition.getTypeId(),v->wrapper.eq("type_id",condition.getTypeId()));
-        IPage<ActivityInfo> pageList = baseMapper.selectPage(page,wrapper);
+//        QueryWrapper<ActivityInfo> wrapper = QueryWrappers.wrapper()
+
+        IPage<ActivityInfo> pageList = baseMapper.selectAllActivityInfo(page,condition);
         return pageList;
     }
 

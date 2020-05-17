@@ -28,6 +28,9 @@ public class ActivityType extends SuperEntity {
     @TableLogic
     private Integer isDel;
 
+
+
+
     public JSONObject getJsonObject() throws JSONException {
     	JSONObject jsonActivityType=new JSONObject(); 
 		jsonActivityType.put("typeId", this.getTypeId());

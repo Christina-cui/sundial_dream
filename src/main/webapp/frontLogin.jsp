@@ -30,7 +30,7 @@
                     <div class="login_title">
                         登录
                     </div>
-                    <form method="post">
+                    <form method="post" action = >
 
                         <div class="form_text_ipt">
                             <input name="userName" type="text" placeholder="会员号/手机号/邮箱">
@@ -54,8 +54,8 @@
                         </div>
                         <div class="error">${error }</div>
                         <div class="form_reg_btn">
-                            <span>还没有帐号？</span><a href="${pageContext.request.contextPath }/register.jsp">马上注册</a>
-                            <a href="${pageContext.request.contextPath }/index.jsp">退出</a>
+                            <span>还没有帐号？</span><a href="<%=basePath%>/register.jsp">马上注册</a>
+                            <a href="<%=basePath%>/index.jsp">退出</a>
                         </div>
                     </form>
 
@@ -67,6 +67,14 @@
 <script type="text/javascript" src="<%=basePath%>/js/login/jquery.min.js"></script>
 
 <script>
+    function saveName() {
+        if($("#checked").prop("checked")){
+            $.cookie('user',$("#user").val(),{
+                expires :7
+            })
+        }
+    }
+
     function ajaxLogin() {
         $.ajax({
             url: "<%=basePath%>/user/login",
@@ -76,12 +84,13 @@
                 "userName": $('#userName').val(),
                 "password": $('#password').val(),
             },
-            success: function (obj, response, status) {
-                if (obj.success) {
-
+            success: function (data, response, status) {
+                alert(data.msg);
+                if(data.success) {
+                    saveName();
                     location.href = "<%=basePath%>index.jsp";
                 } else {
-                    alert(obj.msg);
+                    alert(data.msg);
                 }
             }
         });

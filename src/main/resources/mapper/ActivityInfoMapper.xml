@@ -17,8 +17,6 @@ mapper.xml以statement为单位管理sql语句
 		select t_activityInfo.* from t_activityInfo,t_activityType ${where} and t_activityInfo.typeObj = t_activityType.typeId limit #{startIndex},#{pageSize}
 	</select>
 	<resultMap id="activityInfoMap" type="activityInfo">
-        <id property="activityId" column="activityId" />
-        <association property="typeObj" column="typeObj" select="com.chengxusheji.mapper.ActivityTypeMapper.getActivityType" />
     </resultMap>
 
     <!-- 按照查询条件查询所有公益活动记录 -->
@@ -45,5 +43,35 @@ mapper.xml以statement为单位管理sql语句
 	<delete id="deleteActivityInfo" parameterType="int">
 		delete from t_activityInfo where activityId=#{activityId}
 	</delete>
+	
+	
+	<select id="selectAllActivityInfo" resultMap="activityInfoMap"  parameterType="com.cuijing.sundial_dream.condition.ActivityInfoCondition">
+		select i from t_activity_info i
+		<where>
+			i.type_id = t.id and i.user_id = u.id and
+			i.is_del = 0
+			<if test="condition.userId != null">
+				and i.user_id = #{condition.userId}
+			</if>
+			<if test="condition.title != null">
+				and i.title like #{condition.title}
+			</if>
+			<if test="condition.typeId != null">
+				and i.type_id = #{condition.typeId}
+			</if>
+			<if test="condition.check != null">
+				and i.check = #{condition.check}
+			</if>
+			<if test="condition.donationGeTime != null">
+				and i.activity_time <![CDATA[ >= ]]> #{condition.geTime}
+			</if>
+			<if test="condition.donationLeTime != null">
+				and i.activity_time <![CDATA[ <= ]]> #{condition.leTime}
+			</if>
+			<if test="condition.donationStartTime != null and condition.donationEndTime != null">
+				and (i.activity_time <![CDATA[ >= ]]> #{condition.startTime} and i.donation_time <![CDATA[ <= ]]> #{condition.endTime})
+			</if>
+		</where>
+	</select>
 
 </mapper>

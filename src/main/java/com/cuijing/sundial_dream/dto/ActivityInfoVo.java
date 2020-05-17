@@ -26,4 +26,6 @@ public class ActivityInfoVo {
 
     /*活动时间*/
     private Date activityTime;
+
+    private Integer check;
 }

@@ -5,7 +5,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableLogic;
 import com.baomidou.mybatisplus.annotation.TableName;
-import com.baomidou.mybatisplus.annotation.TableName;
+import com.cuijing.sundial_dream.entity.User;
 import lombok.Data;
 
 import javax.validation.constraints.NotEmpty;
@@ -48,14 +48,33 @@ public class ActivityInfo extends SuperEntity {
     @TableLogic
     private Integer isDel;
 
+    @TableField(value = "check")
+    private Integer check;
+
+    @TableField(value = "user_id")
+    private Long userId;
+
+    @TableField(value = "people_num")
+    private Integer peopleNum;
+
+
+    @TableField(exist = false)
+    private ActivityType typeObj;
+    @TableField(exist = false)
+    private User user;
+
     public JSONObject getJsonObject() throws JSONException {
         JSONObject jsonActivityInfo=new JSONObject();
         jsonActivityInfo.put("activityId", this.getActivityId());
-        jsonActivityInfo.put("typeObj", this.getTypeId());
+        jsonActivityInfo.put("typeObj", this.getTypeObj());
         jsonActivityInfo.put("title", this.getTitle());
         jsonActivityInfo.put("activityPhoto", this.getActivityPhoto());
         jsonActivityInfo.put("content", this.getContent());
         jsonActivityInfo.put("activityTime", this.getActivityTime());
+        jsonActivityInfo.put("check",this.getCheck());
+        jsonActivityInfo.put("peopleNum",this.getPeopleNum());
+        jsonActivityInfo.put("user",this.getUser());
+
         return jsonActivityInfo;
     }
 }

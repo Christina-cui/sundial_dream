@@ -25,7 +25,7 @@ public interface UserMapper extends BaseMapper<User> {
     @Select("SELECT count(id) FROM t_user where phone=#{phone}")
     int countByPhone(String phone);
 
-    @Select("SELECT * FROM t_user where mail = #{mail} ")
+    @Select("SELECT * FROM t_user where email = #{mail} ")
     User selectByMail(@Param("mail")String mail);
 
     @Update("UPDATE TABLE t_user set password = #{password} where id = #{id}")

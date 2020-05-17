@@ -36,7 +36,7 @@ public class ActivityTypeServiceImpl extends BaseServiceImpl<ActivityTypeMapper,
     }
 
     @Override
-    public Optional<ActivityType> findActivityType(int typeId) {
+    public Optional<ActivityType> findActivityTypeById(Long typeId) {
         return Optional.ofNullable(baseMapper.selectById(typeId));
     }
 
@@ -46,7 +46,7 @@ public class ActivityTypeServiceImpl extends BaseServiceImpl<ActivityTypeMapper,
     }
 
     @Override
-    public boolean deleteActivityType(int typeId) {
+    public boolean deleteActivityType(Long typeId) {
         return deleteById(typeId);
     }
 }

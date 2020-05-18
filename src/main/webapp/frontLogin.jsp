@@ -30,7 +30,7 @@
                     <div class="login_title">
                         登录
                     </div>
-                    <form method="post" action = >
+                    <form>
 
                         <div class="form_text_ipt">
                             <input name="userName" type="text" placeholder="会员号/手机号/邮箱">
@@ -49,12 +49,12 @@
                             </div>
                         </div>
                         <div class="form_btn">
-                            <input type="submit" value="登录" name="login" onclick="ajaxLogin();">
+                            <input type="submit" value="登录" name="login" onclick="ajaxLogin()">
                             <!-- <button type="button" onclick="javascript:window.location.href='#'">登录</button> -->
                         </div>
                         <div class="error">${error }</div>
                         <div class="form_reg_btn">
-                            <span>还没有帐号？</span><a href="<%=basePath%>/register.jsp">马上注册</a>
+                            <span>还没有帐号？</span><a href="<%=basePath%>register.jsp">马上注册</a>
                             <a href="<%=basePath%>/index.jsp">退出</a>
                         </div>
                     </form>
@@ -64,7 +64,7 @@
         </div>
     </div>
 </div>
-<script type="text/javascript" src="<%=basePath%>/js/login/jquery.min.js"></script>
+<script type="text/javascript" src="<%=basePath%>js/login/jquery.min.js"></script>
 
 <script>
     function saveName() {
@@ -76,15 +76,16 @@
     }
 
     function ajaxLogin() {
+        var user = {};
+        user.userName = $('#userName').val();
+        user.password = $('#password').val();
         $.ajax({
             url: "<%=basePath%>/user/login",
             type: 'post',
+            contentType: 'application/json;charset=utf-8',
             dataType: "json",
-            data: {
-                "userName": $('#userName').val(),
-                "password": $('#password').val(),
-            },
-            success: function (data, response, status) {
+            data: JSON.stringify(user),
+            success: function (data) {
                 alert(data.msg);
                 if(data.success) {
                     saveName();

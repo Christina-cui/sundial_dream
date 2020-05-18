@@ -1,3 +1,13 @@
+function frontLogin(){
+    var userName = $("#userName").val();
+    var password = $("#password").val();
+    var checked = $("#checked").val();
+    if(userName == null || userName == ""){
+        alert("用户名不能为空！");
+        return;
+    }
+}
+
 function savePaw() {
     if (!$("#saveid").prop("checked")) {
         $.cookie('manager', '', {

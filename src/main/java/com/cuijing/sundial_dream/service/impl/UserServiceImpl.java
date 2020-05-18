@@ -104,7 +104,7 @@ public class UserServiceImpl extends BaseServiceImpl<UserMapper, User> implement
         }
         if(ObjectUtils.isNotNull(user)){
             if(Objects.equals(user.getPassword(),password)){
-                return "success";
+                return "success"+user.toString();
             }else{
                 return "密码错误";
             }

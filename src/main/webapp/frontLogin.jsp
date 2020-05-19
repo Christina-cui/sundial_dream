@@ -30,7 +30,7 @@
                     <div class="login_title">
                         登录
                     </div>
-                    <form>
+                    <form id = "userlogin" method="post" name = "userlogin" onsubmit="return false" action="##">
 
                         <div class="form_text_ipt">
                             <input name="userName" type="text" placeholder="会员号/手机号/邮箱">

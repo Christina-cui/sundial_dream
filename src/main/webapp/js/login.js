@@ -1,11 +1,32 @@
 function frontLogin(){
     var userName = $("#userName").val();
     var password = $("#password").val();
-    var checked = $("#checked").val();
+    var checked = $("#checked").is(":checked");
     if(userName == null || userName == ""){
         alert("用户名不能为空！");
         return;
     }
+    if(password == null || password == ""){
+        alert("密码不能为空！");
+        return;
+    }
+    $.ajax({
+        type:"POST",
+        dataType: "json",
+        url:"user/login",
+        data: $('#userlogin').serialize(),
+        success:function (result) {
+            if(result.resultCode == 200){
+                if(checked){
+                    setCookie("userName",result.data.currentUser.userName);
+                    setCookie("password",result.data.currentUser.password);
+                    window.location.href = "main.jsp";
+                }
+            }
+        }
+
+    })
+
 }
 
 function savePaw() {

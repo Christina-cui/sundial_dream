@@ -42,8 +42,6 @@ public class UserController {
     @PostMapping("/login")
     @ResponseBody
     public Result login(@RequestBody UserDto userDto){
-
-        boolean success = false;
         String msg = "";
         //根据名字
         User user = userService.findByName(userDto.getUserName());
@@ -56,22 +54,21 @@ public class UserController {
         if(ObjectUtils.isNotNull(user)){
             if(Objects.equals(user.getPassword(),userDto.getPassword())){
                 msg = "success";
-                success = true;
             }else{
                 msg = "密码错误";
             }
         }
         msg = "该用户不存在";
-        HttpSession session = null;
-        if(Objects.equals("success",msg)){
-            Map<String,String> map = new HashMap<>();
-            session.setAttribute("user",user);
-        }
-        //将要被返回到客户端的对象
-        JSONObject json=new JSONObject();
-        json.put("success", success);
-        json.put("msg", msg);
-        return json;
+//        HttpSession session = null;
+//        if(Objects.equals("success",msg)){
+//            Map<String,String> map = new HashMap<>();
+//            session.setAttribute("user",user);
+//        }
+//        //将要被返回到客户端的对象
+//        JSONObject json=new JSONObject();
+//        json.put("success", success);
+//        json.put("msg", msg);
+//        return json;
     }
 
     @RequestMapping("/register")

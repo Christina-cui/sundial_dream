@@ -20,7 +20,7 @@ import java.util.Date;
 @Data
 public class User extends SuperEntity {
 
-    private static final long serialVersionUID=1L;
+    @TableId(value = "id",type = IdType.AUTO)
     /**
      * 手机号
      */

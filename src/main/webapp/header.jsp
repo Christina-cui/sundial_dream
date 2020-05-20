@@ -42,7 +42,7 @@
         </li>
 
         <%
-            String user_name = (String) session.getAttribute("user_name");
+            String user_name = (String) session.getAttribute("");
             if (user_name == null) {
         %>
         <li class="probootstra-cta-button last"><a href="frontLogin.jsp" class="btn btn-primary">登录</a></li>

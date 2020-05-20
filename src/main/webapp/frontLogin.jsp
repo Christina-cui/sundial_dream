@@ -86,7 +86,6 @@
             dataType: "json",
             data: JSON.stringify(user),
             success: function (data) {
-                alert(data.msg);
                 if(data.success) {
                     saveName();
                     location.href = "<%=basePath%>index.jsp";
